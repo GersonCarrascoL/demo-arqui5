@@ -1,0 +1,11 @@
+{
+  "mysql" :{
+    "host" : "127.0.0.1",
+    "user" : "root",
+    "password" : "1234",
+    "port" : 3306,
+    "connectionLimit" : 10,
+    "database" : "arqui-demo5",
+    "ssl" : true
+  }
+}
