@@ -56,11 +56,13 @@ class UserController{
                     message: `No data`
                 })
             } else {
+                console.log(data)
                 bcrypt.compare(user.userPassword, data[0][0].UserPassword, function (err, response) {
                     if (response == true) {                
                         return res.status(200).send({
                             token: jwt.createToken(user),
                             user:{
+                                idUser:data[0][0].idUser,
                                 userName:data[0][0].UserName,
                                 userLastName1:data[0][0].UserLastName1,
                                 userLastName2:data[0][0].UserLastName2,
