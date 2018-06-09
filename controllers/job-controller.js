@@ -63,6 +63,7 @@ class JobController{
             idJob: req.params.id
         }
         jm.getListAplicationUsers(data,(err,data)=>{
+            console.log(data)
             if(err){
                 return res.status(500).send({
                     message:err.stack
