@@ -9,7 +9,9 @@ const express = require('express'),
     userRoutes = require('./routes/user-router'),
     jobRoutes = require('./routes/job-router'),
     port = (process.env.PORT || 5000),
-    cors = require('cors')
+    cors = require('cors'),
+    cluster = require('cluster'),
+    os = require('os')
 
 app
     .set('port', port)
@@ -21,5 +23,15 @@ app
     .use(restFul)
     .use(userRoutes)
     .use(jobRoutes)
+    
 
-ioServer.listen(port)
+if(cluster.isMaster){
+    for (let i = 0; i < os.cpus().length ; i++) {
+        console.log('CPU N°'+i+': '+os.cpus()[i])
+        cluster.fork()
+    }
+}else{
+    console.log('Server running in PORT:'+port)
+    ioServer.listen(port)
+}
+

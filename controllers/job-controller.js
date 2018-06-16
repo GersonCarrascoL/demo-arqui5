@@ -1,11 +1,24 @@
 'use strict'
 
 const JobModel = require('../models/job-model'),
-    jm = new JobModel()
+    jm = new JobModel(),
+    _performance = require('perf_hooks').performance,
+    util = require('util'),
+    debug = util.debuglog('performance')
 
 class JobController{
     getJobs(req,res){
+        _performance.mark('Start procedure')
         jm.getJobs((err,data)=>{
+            _performance.mark('End procedure')
+
+            __performance.measure('Beginning to End','Start procedure','End procedure')
+
+            var measurements = _performance.getEntriesByType('measure')
+
+            measurements.forEach( measurements => {
+                console.log('\x1b[33m%s\x1b[0m',measurements.name+' '+measurements.duration)
+            })
             if(err){
                 return res.status(500).send({
                     message:err.stack

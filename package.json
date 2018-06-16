@@ -15,7 +15,6 @@
   "bugs": {
     "url": "https://github.com/GersonCarrascoL/core-nodejs/issues"
   },
-  
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
